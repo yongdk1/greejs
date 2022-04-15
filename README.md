@@ -1,6 +1,6 @@
 # GreeJS
 
-https://powerful-crag-47059.herokuapp.com/
+https://greejs.herokuapp.com/
 
 ## Getting Started
 Developers will have to include the `gree.css` and `gree.js` files that have been downloaded. `jquery.js` must also be included as a dependency. For example:
@@ -20,4 +20,4 @@ Developers will have to include the `gree.css` and `gree.js` files that have bee
 ```
 
 See the rest of the documentation here:
-https://powerful-crag-47059.herokuapp.com/documentation.html
+https://greejs.herokuapp.com/documentation.html
