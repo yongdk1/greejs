@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,
+                   initial-scale=1.0"
+    />
+    <title>Examples | Gree.js</title>
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <link href="./css/prism.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="./css/gree.css"/>
+    <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script defer src="./scripts/gree.js"></script>
+    <script defer src="./scripts/examples.js"></script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 0px">
+      <div class="container">
+        <a class="navbar-brand" href="./index.html" style="font-size: 32px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Gree.js</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div style="float: right">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" style="border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: black;" aria-current="page" href="./examples.html">Examples</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./documentation.html">Documentation</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#"><i class="fa-brands fa-github" style="font-size: 24px;"></i></a>
+              </li>
+            </ul>
+            </ul>
+          </div>
+        </div>
+        
+      </div>
+    </nav>
+    <div class="container">
+      <h1>Examples</h1>
+      <div>
+        <h3>An Ahnentafel ("ancestor table") listing a person's direct ancestors</h3>
+        <p>
+          The most basic family tree, in the structure of an inverse binary tree.
+        </p>
+        <div id="demoAhnentafel1" style="margin: auto"></div>
+        <pre><code class="language-javascript">const greeAhnentafel = new PedigreeTree("ahnentafel");
+const demoAhnentafel = document.getElementById('demoAhnentafel');
+greeAhnentafel.setGraph({height: "520px"});
+greeAhnentafel.generate(demoAhnentafel, ahnentafel);</code></pre>
+        <p>
+          Note that other than limiting the height of the graph to 520px, the options are left as their defaults. <br>
+          We can see that the graph contents have scaled to fit the height of 520px. <br>
+          Also note that if an additional detail pop-up is open, clicking inside the graph or on another "more" button causes the open pop-up to close.
+        </p>
+        <p>If scaling is turned off, the graph will display as follows:</p>
+        <div id="demoAhnentafel2" style="margin: auto"></div>
+        <pre><code class="language-javascript">const greeAhnentafel2 = new PedigreeTree("ahnentafel2")
+const demoAhnentafel2 = document.getElementById('demoAhnentafel2');
+greeAhnentafel2.setGraph({height: "520px", width:"983px", scaling: false, clickdrag: true, multiOpen: true})
+greeAhnentafel2.generate(demoAhnentafel2, ahnentafel);</code></pre>
+        <p>Note the way that the cards are now full-sized, while users can click and drag to move the graph around within the window.<br>
+        "multiOpen" is set to true to allow for the clicking and dragging operation to not close the additional details pop-up.</p>
+        <p>The tree object is as follows:</p>
+        <pre><code class="language-javascript">const ahnentafel = [
+  {
+      id: 1,
+      partner: 2,
+      level: -2,
+      name: "paternal grandfather",
+      gender: "male",
+      additional: {
+          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      }
+  },
+  ... // the rest of the tree node objects are the same
+]
+</code></pre>
+      </div>
+      <br>
+      <div>
+        <h3>A family tree on a Star Wars Fan Site</h3>
+        <p>
+          A more complex usage of GreeJS could be on a Wiki page, such as the Star Wars Wiki fan page.
+        </p>
+        <div id="demoStarWars" style="margin: auto"></div>
+        <br>
+        <pre><code class="language-javascript">const greeStarWars = new PedigreeTree("starwars");
+greeStarWars.setCard({width:305, hover:true});
+const demoStarWars = document.getElementById('demoStarWars');
+greeStarWars.generate(demoStarWars, starwars);</code></pre>
+        <p>
+          Here, the card has been modified to have a width of 305px to fit the "glance" card information. <br>
+          We can see that the graph contents have been scaled to fit the width of the container. <br>
+          Also note that additional details now display on mouse hover over the person card, and hide when the mouse is moved away. <br>
+          Pay particular attention to "Anakin Skywalker" and "Padme Amidala". These tree objects have been fully populated, and we can see that clicking on their names will redirect the user to an external wiki page.
+          Their additional details popup has also been fully populated, with the "description" property being at the top, and the rest being placed in table format below.
+        </p>
+        <p>The tree object is as follows:</p>
+        <pre><code class="language-javascript">const starwars = [
+  {
+      id: 1,
+      parent1: null,
+      parent2: null,
+      partner: 2,
+      level: 0,
+      name: "Anakin Skywalker",
+      gender: "male",
+      image: "https://snippet.dhtmlx.com/codebase/data/diagram/14/img/03.jpg",
+      dates: "41BBY - 5ABY",
+      glance: "The prophesied Chosen One",
+      link: "https://starwars.fandom.com/wiki/Anakin_Skywalker",
+      additional: {
+          description: "Anakin Skywalker was a legendary Force-sensitive human male who was a Jedi Knight of the Galactic Republic and the prophesied Chosen One of the Jedi Order, destined to bring balance to the Force.",
+          species: "Human",
+          height: "1.88 meters, later 2.03 meters in armor",
+          mass: "120 kilograms in armor",
+          hair_color: "blond, light and dark",
+          eye_color: "blue, later yellow (dark side)",
+          skin_color: "light, later pale",
+          cybernetics: "cybernetic right arm; later prosthetic arms and legs, and a life-support system"
+      }
+  },
+  ... // the rest of the tree node objects are the same
+]
+</code></pre>
+      </div>
+      <br>
+      <div>
+        <h3>The British Royal family tree</h3>
+        <p>Another common usage for family tree would be for tracking royal blood.</p>
+        <div id="demoRoyal" style="margin: auto"></div>
+        <br>
+        <pre><code class="language-javascript">const greeRoyal = new PedigreeTree("royal");
+greeRoyal.setGraph({height: "520px", clickdrag:true, scalingType:"x"});
+greeRoyal.setCard({cardcolor:"#E6E6FA", fontsize: 18});
+const demoRoyal= document.getElementById('demoRoyal');
+greeRoyal.generate(demoRoyal, royal);</code></pre>
+        <p>
+          Here, the height of the graph has been limited to 520px. However, the developer has chosen to scale the graph to fit the x-axis (width of the container). We can see that the graph is scrollable on the y-axis, allowing for a more aesthetic user experience without filling the whole window with a large graph. <br>
+          The cards have also been modified to have a different background colour, which may fit the website's theme better, and the font-size has been increased to 18px to increase legibility.
+        </p>
+        <p>The tree object is as follows:</p>
+        <pre><code class="language-javascript">const royal = [
+  {
+      id: 1,
+      level: 0,
+      partner: 2,
+      name: "King George VI",
+      gender: "male",
+      image: "https://m.media-amazon.com/images/M/MV5BYWZiMjE3MGItOTIwMS00MmE4LWJiOTEtMzE4ZTQwNmE3ODE3XkEyXkFqcGdeQXVyMTk2MzI2Ng@@._V1_.jpg"
+  },
+  ... // the rest of the tree node objects are the same
+]
+          </code></pre>
+          <br>
+        </div>
+
+      <footer style="float: right; text-align: right;">
+        <p>Author: Yong Duan Kai, yongduan<br>
+        <a href="mailto:yongduan@mail.utoronto.ca">yongduan@mail.utoronto.ca</a></p>
+      </footer>
+    </div>
+
+    <script src="./scripts/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  
+  </body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "greejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "sync": "browser-sync start --server 'pub' --watch 'pub/scripts/*.js' 'pub/css/*.css' 'pub/*.html'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3",
+    "popper.js": "^1.16.1"
+  },
+  "engines": {
+    "node": "14.x"
+  }
+}

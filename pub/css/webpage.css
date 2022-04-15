@@ -1,0 +1,23 @@
+.codelike {
+    padding: 10px;
+    background-color: floralwhite;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    line-height: 1.5;
+    tab-size: 4;
+}
+
+.codelike .required {
+    color: red
+}
+
+.codelike .number {
+    color: #905;
+}
+
+.codelike .string {
+    color: #690;
+}
+
+.codelike .var {
+    color: #07a;
+}

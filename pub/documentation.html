@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,
+                   initial-scale=1.0"
+    />
+    <title>API | Gree.js</title>
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <link href="./css/prism.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 0px">
+      <div class="container">
+        <a class="navbar-brand" href="./index.html" style="font-size: 32px; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Gree.js</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div style="float: right">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="./examples.html">Examples</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" style="border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: black;" aria-current="page" href="./documentation.html">Documentation</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#"><i class="fa-brands fa-github" style="font-size: 24px;"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+      </div>
+    </nav>
+    <div class="container" >
+      <div style="min-height: 100vh">
+        <h1>Documentation</h1>
+        <h3>Getting Started</h3>
+        <p>Developers will have to include the <code class="language-javascript">gree.css</code> and <code class="language-javascript">gree.js</code> that have been downloaded. <code class="language-javascript">jquery.js</code> must also be included as a dependency. For example:</p>
+        <pre><code class="language-html"><xmp><!DOCTYPE html>
+<html>
+<head>
+	...
+  
+	<link href="styles/gree.css" rel="stylesheet" />
+</head>
+<body>
+	...   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="scripts/gree.js"></script>
+</body>
+</html>
+</xmp></code></pre>
+<br>
+        <h4>Creating the PedigreeTree</h4>
+        <p>Developers begin by creating a new object instance of a PedigreeTree.</p>
+        <pre><code class="language-javascript">const pedigreeTree = new PedigreeTree('pedigreeTreeID');</code></pre>
+        <p>In HTML, create an empty div where the family tree is to be.</p>
+        <pre><code class="language-html"><xmp><div id='emptyDivWeWantOurTreeIn'></div></xmp></code></pre>
+        <br>
+        <h4>Passing the Tree Object</h4>
+        <p>Developers must then provide a specification of their family tree.<br>
+        GreeJS accepts a family tree as an array of objects. Each object contains all the data required for a tree node in the following example format:</p>
+        <pre><code class="language-javascript">const treeObjectArray = [
+  {
+    ...
+  },
+  {
+    id: 2,
+    level: 0,
+    partner: 1,
+    parent1: 13,
+    parent2: 14,
+    name: "Padme Amidala",
+    gender: "female",
+    image: "https://snippet.dhtmlx.com/codebase/data/diagram/14/img/15.jpg",
+    dates: "46BBY - 19BBY",
+    glance: "Senator of Naboo",
+    link: "https://starwars.fandom.com/wiki/Padm%C3%A9_Amidala",
+    additional: {
+        description: "Padmé Amidala Naberrie was a human female senator who represented the people of Naboo during the final years of the Galactic Republic. Prior to her career in the Galactic Senate, Amidala was the elected ruler of the Royal House of Naboo. A political idealist, she advocated for the preservation of democracy as well as a peaceful resolution to the Clone Wars. However, her secret marriage to the Jedi Knight Anakin Skywalker would have a lasting effect on the future of the galaxy for decades to come.",
+        Species: "Human (Naboo)",
+        Gender: "Female",
+        Height: "1.65 meters (5 ft, 5 in)",
+        Hair_color: "Brown",
+        Eye_color: "Brown",
+        Skin_color: "Light"
+    }
+  },
+  {
+    ...
+  },
+]</code>
+</pre>
+        <p>The minimum required tree node object is as follows:</p>
+        <pre><code class="language-javascript">{
+  id: 1,      // required
+  level: -2,  // required
+  partner: 2, // if present
+  parent1: 5, // if present
+  parent2: 6  // if present
+}</code></pre>
+        <p>However, it is advisable to have the name be included as well. Tree node object properties are documented as follows:</p>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Property</th>
+              <th scope="col">Type</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                id <span style="color:gray; font-size:0.8em">(required)</span>
+              </td>
+              <td>
+                Integer
+              </td>
+              <td>
+                Identifies the tree node. Must be a unique value that belongs to only one tree node. <br>
+                This will be used for ordering and placement operations.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                level <span style="color:gray; font-size:0.8em">(required)</span>
+              </td>
+              <td>
+                Integer
+              </td>
+              <td>
+                The level of the tree that the node is on. Levels are ordered from the most negative at the top to the most positive at the bottom.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                partner <span style="color:gray; font-size:0.8em">(if present)</span>
+              </td>
+              <td>
+                Integer
+              </td>
+              <td>
+                The id of the tree node's partner. Must be a node on the same level.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                parent1 <span style="color:gray; font-size:0.8em">(if present)</span>
+              </td>
+              <td>
+                Integer
+              </td>
+              <td>
+                The id of the tree node's first parent. Must be a node on the level directly above.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                parent2 <span style="color:gray; font-size:0.8em">(if present)</span>
+              </td>
+              <td>
+                Integer
+              </td>
+              <td>
+                The id of the tree node's second parent. Must be a node on the level directly above.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                name <span style="color:gray; font-size:0.8em">(recommended)</span>
+              </td>
+              <td>
+                String
+              </td>
+              <td>
+                The name of the person.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                gender
+              </td>
+              <td>
+                String
+              </td>
+              <td>
+                The gender of the person. Determines the color of the bar at the top of each card. <br>
+                Options are: "male" | "female"
+              </td>
+            </tr>
+            <tr>
+              <td>
+                image
+              </td>
+              <td>
+                String
+              </td>
+              <td>
+                The href of an image of the person.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                dates
+              </td>
+              <td>
+                String
+              </td>
+              <td>
+                The significant dates of a person. Usually date of birth and date of death.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                glance
+              </td>
+              <td>
+                String
+              </td>
+              <td>
+                A short blurb describing the person. This data is displayed on the card by default, and will be cut off after 1 row.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                link
+              </td>
+              <td>
+                String
+              </td>
+              <td>
+                A link to more details about the person. May link to an external website, or to an element on the same page.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                additional
+              </td>
+              <td>
+                Object
+              </td>
+              <td>
+                Information that will be displayed in a details pop-up on the card. <br>
+                Contains any number of developer-defined properties that will be displayed in a table format, <br>
+                except for the reserved <code class="language-markup">description</code> property that will be displayed at the top of the details pop-up as a paragraph.<br>
+                See the Star Wars example's Anakin and Padme cards for more clarity on how this works.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <br>
+        <h4>Adding the PedigreeTree to our HTML</h4>
+        <p>Developers can specify graph and card options by calling setGraph and setCard respectively. These options are documented in the next section, <strong>API options</strong>.</p>
+        <pre><code class="language-javascript">pedigreeTree.setGraph({options})
+pedigreeTree.setCard({options});</code></pre>
+        <p>Finally, append the PedigreeTree to the HTML as shown:</p>
+        <pre><code class="language-javascript">const emptyDiv = document.getElementById('emptyDivWeWantOurTreeIn');
+pedigreeTree.generate(emptyDiv, treeObjectArray);</code></pre> 
+        <br>
+        <h3>API Options</h3>
+        <h4>Graph Options</h4>
+        <p>Graph Options are set with the public function <code class="language-markup">.setGraph({options})</code></p>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Property</th>
+              <th scope="col">Default</th>
+              <th scope="col">Type</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                height
+              </td>
+              <td>
+                "auto"
+              </td>
+              <td>
+                String <span style="color:gray; font-size:0.8em">(css)</span>
+              </td>
+              <td>
+                The height of tree graph container.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                width
+              </td>
+              <td>
+                "100%"
+              </td>
+              <td>
+                String <span style="color:gray; font-size:0.8em">(css)</span>
+              </td>
+              <td>
+                The width of tree graph container.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                scaling
+              </td>
+              <td>
+                true
+              </td>
+              <td>
+                Boolean
+              </td>
+              <td>
+                Causes the graph to scale to the size of the tree graph container. <br>
+                Will scale according to the more constraining of height and width, <br>
+                unless <code class="language-markup">scalingType</code> is specified.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                scalingType
+              </td>
+              <td>
+                ""
+              </td>
+              <td>
+                String
+              </td>
+              <td>
+                Causes the tree to scale according to only the x or y axes. <br>
+                Options are: "x" | "y"
+              </td>
+            </tr>
+            <tr>
+              <td>
+                clickdrag
+              </td>
+              <td>
+                true
+              </td>
+              <td>
+                Boolean
+              </td>
+              <td>
+                Enables overflow in the graph. Users can click and drag within the graph to navigate through the tree. <br>
+                Usually used when <code class="language-markup">scale=false</code> or <code class="language-markup">scalingType</code> is set.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                multiOpen
+              </td>
+              <td>
+                false
+              </td>
+              <td>
+                Boolean
+              </td>
+              <td>
+                Enables multiple additional tabs to be open at the same time.<br>
+                When false, clicking outside of a details pop-up but within the graph window will cause the details pop-up to close. <br> 
+              </td>
+            </tr>
+            
+          </tbody>
+        </table>
+        <br>
+        <h4>Card Options</h4>
+        <p>
+          Card Options are set with the public function <code class="language-markup">.setCard({options})</code> <br>
+          Cards may be scaled in size if graph scaling is true.
+        </p>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Property</th>
+              <th scope="col">Default</th>
+              <th scope="col">Type</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                height
+              </td>
+              <td>
+                "105px"
+              </td>
+              <td>
+                Integer
+              </td>
+              <td>
+                The height of the card in pixels. Is set to a minimum of 105px.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                width
+              </td>
+              <td>
+                "250px"
+              </td>
+              <td>
+                Integer
+              </td>
+              <td>
+                The width of the card in pixels.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                fontsize
+              </td>
+              <td>
+                16
+              </td>
+              <td>
+                Integer
+              </td>
+              <td>
+                Font size in pixels.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                cardcolor
+              </td>
+              <td>
+                "floralwhite"
+              </td>
+              <td>
+                String <span style="color:gray; font-size:0.8em">(css)</span>
+              </td>
+              <td>
+                Background color of the card. Can be any css-valid color, such as color names, hexadecimals, RGB(A), and HSL(A).
+              </td>
+            </tr>
+            <tr>
+              <td>
+                hover
+              </td>
+              <td>
+                false
+              </td>
+              <td>
+                Boolean
+              </td>
+              <td>
+                Enables display of additional details pop-up on card hover. <br>
+                When false, users must click on the "More" button to display the additional details.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      
+      <footer style="float: right; text-align: right;">
+        <p>Author: Yong Duan Kai, yongduan<br>
+        <a href="mailto:yongduan@mail.utoronto.ca">yongduan@mail.utoronto.ca</a></p>
+      </footer>
+    </div>
+
+    <script src="./scripts/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+  </body>
+</html>

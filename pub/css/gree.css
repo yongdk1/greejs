@@ -1,0 +1,103 @@
+.greegraph {
+    position: relative;
+    /* border: 1px solid black; */
+    white-space: nowrap;
+    width: min-content;
+    transform-origin: 0 0;
+    font-size: 16px;
+}
+
+svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+line {
+    stroke-width:2px;
+    stroke:rgb(0,0,0);
+    transform-origin: 0px 0px;
+}
+
+.placement {
+    position: relative;
+    display: inline-block;
+    margin: 50px 25px;
+    white-space: normal;
+}
+
+.personWrapper {
+    position: relative;
+    height: 100%;
+    display: flex;
+}
+
+.personCard {
+    min-height: 5em;
+    min-width: 250px;
+    height: fit-content;
+    border: 1px solid rgb(8, 17, 22);
+    border-radius: 3px;
+    z-index: 0px;
+}
+
+.personGlance {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.headerBar {
+    height: 4px;
+    width: 100%;
+    border-radius: 3px;
+    position: absolute;
+}
+
+.personImg {
+    border-radius: 50%;
+    object-fit: contain;
+    max-height: 80%;
+    max-width: 40%;
+    margin-top: 2.5%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+}
+
+.personDetails {
+    margin-top: 0.5em;
+}
+
+.personName {
+    font-weight: bold;
+}
+
+.personDates {
+    font-style: italic;
+}
+
+.additionalSummary {
+    color: grey; 
+    font-size: 0.9em; 
+    cursor: pointer
+}
+
+.additionalCard {
+    border: 1px solid rgb(8, 17, 22);
+    border-radius: 3px;
+    background-color: white;
+    padding: 10px;
+    width: 400px;
+    z-index: 2;
+    position: relative;
+}
+
+.additionalCard th {
+    text-align: left;
+    vertical-align: text-bottom;
+}
+
+table, th, td {
+    border: 1px solid;
+    border-collapse: collapse;
+}

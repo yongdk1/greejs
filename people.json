@@ -1,0 +1,19 @@
+{
+    "name": "Anakin Skywalker",
+    "gender": "male",
+    "parent1": "",
+    "parent2": "",
+    "image": "https://snippet.dhtmlx.com/codebase/data/diagram/14/img/03.jpg",
+    "dates": "41BBY - 5ABY",
+    "glance": "The prophesied Chosen One",
+    "additional": {
+        "description": "Anakin Skywalker was a legendary Force-sensitive human male who was a Jedi Knight of the Galactic Republic and the prophesied Chosen One of the Jedi Order, destined to bring balance to the Force.",
+        "species": "Human",
+        "height": "1.88 meters, later 2.03 meters in armor",
+        "mass": "120 kilograms in armor",
+        "hair_color": "blond, light and dark",
+        "eye_color": "blue, later yellow (dark side)",
+        "skin_color": "light, later pale",
+        "cybernetics": "cybernetic right arm; later prosthetic arms and legs, and a life-support system"
+    }
+}
